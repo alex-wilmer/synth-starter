@@ -3,6 +3,7 @@
   <head>
     <title>Sample App</title>
     <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <style>
     * {
       box-sizing: border-box;
@@ -134,13 +135,23 @@
       text-shadow: 0px 0px 3px #f4679f;
       font-family: 'Exo', sans-serif;
     }
+    .git-link {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 45px;
+      color: #f59fc1;
+    }
+    .git-link:hover {
+      color: #f4679f;
+    }
 </style>
   </head>
   <body>
-    <div id='root'>
-    </div>
-    <div id="osc">
-    </div>
+    <div id='root'></div>
+    <a class="git-link" href="https://github.com/alex-wilmer/synth-starter" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
     <script src="/static/bundle.js"></script>
   </body>
 </html>
