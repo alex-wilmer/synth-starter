@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sample App</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    <style>
+    * {
+      box-sizing: border-box;
+      outline: none;
+      -webkit-user-select: none;  /* Chrome all / Safari all */
+      -moz-user-select: none;     /* Firefox all */
+      -ms-user-select: none;      /* IE 10+ */
+      user-select: none;          /* Likely future */
+    }
+    body{
+    	font-family:sans-serif;
+      margin: 0;
+    }
+    div.outercircle{
+    	position:relative;
+    	width:150px;
+    	height:150px;
+    	background:-webkit-linear-gradient(#F772A7, #F25C98);
+    	border-radius:100%;
+    	border:1px solid #D94882;
+    	box-shadow:inset 1px 1px 2px rgba(255,255,255,0.3),
+    				-1px -1px 1px rgba(255,255,255,0.7);
+    	z-index:120;
+    }
+    div.innercircle{
+    	position:absolute;
+    	width:142px;
+    	height:142px;
+    	background:#ffffff;
+    	border:1px solid #D94882;
+    	border-radius:100%;
+    	left:3px;
+    	top:3px;
+    }
+    div.knob{
+    	position:absolute;
+    	width:80px;
+    	height:80px;
+    	left:30px;
+    	top:30px;
+    	background: white;
+    	border:1px solid #rgba(255,255,255,0.7);
+    	border-radius:100%;
+    	box-shadow:0px 4px 6px rgba(0,0,0,0.2),
+    				inset 1px 1px 1px rgba(255,255,255,1),
+    				inset -1px -1px 1px rgba(255,255,255,0.5),
+    				-1px -1px 1px rgba(0,0,0,0.1);
+    	z-index:120;
+    }
+    div.knobrolling{
+    	position:absolute;
+    	width:150px;
+    	height:150px;
+    	left:-5px;
+    	top:-5px;
+    	border-radius:100%;
+    }
+    div.knoblabel{
+    	position:absolute;
+    	width:30px;
+    	height:30px;
+    	left:25px;
+    	top:25px;
+    	line-height:30px;
+    	text-align:center;
+    	font-size:15px;
+    	color:#F772A7;
+    	text-shadow:1px 1px 1px rgba(255,255,255,1),
+    				0px 0px 1px rgba(0,0,0,0.2);
+    	background:white;
+    	border-radius:100%;
+    	border:1px solid rgba(255,255,255,0.7);
+    	box-shadow:1px 1px 2px rgba(255,255,255,0.4),
+    				inset 1px 1px 1px rgba(0,0,0,0.1),
+    				inset -1px -1px 2px rgba(0,0,0,0.1);
+    	z-index:130;
+    }
+    div.pointer{
+    	position:absolute;
+    	width:10px;
+    	height:10px;
+    	left:33px;
+    	top:26px;
+    	font-size:13pt;
+    	background:#F772A7;
+    	border:1px solid #D94882;
+    	border-radius:100%;
+    	box-shadow:inset 1px 1px 6px rgba(0,0,0,0.4),
+    				inset 1px 1px 1px rgba(255,255,255,0.4),
+    				inset -1px -1px 1px rgba(255,255,255,0.1),
+    				0px 0px 2px rgba(255,255,255,0.4);
+    	text-shadow:-1px 0px 1px #B00E4F,
+    				1px 1px 1px rgba(255,255,255,0.8);
+    	line-height:15px;
+    	text-align:center;
+    	-webkit-transition:all 0.2s;
+    }
+    div.knobrolling:hover div.pointer{
+    	border:1px solid #B00E4F;
+    	box-shadow:inset 1px 1px 6px rgba(0,0,0,0.5),
+    				inset 1px 1px 1px rgba(255,255,255,0.6),
+    				inset -1px -1px 1px rgba(255,255,255,0.3),
+    				0px 0px 2px rgba(255,255,255,0.4);
+    }
+    div.divider{
+    	position:relative;
+    	width:72px;
+    	height:73px;
+    	left:75px;
+    	top:5px;
+    	z-index:100;
+    	border-top-right-radius:100%;
+    }
+    #scope {
+      height: 303.6px;
+      transform: scale(0.8);
+      border: 5px solid #f4679f;
+      border-radius: 50px;
+    }
+    .container {
+      border: 5px solid #f4679f;
+      border-radius: 50px;
+      box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .title {
+      padding: 31px 85px;
+      font-size: 30px;
+      color: #f4679f;
+      text-shadow: 0px 0px 3px #f4679f;
+      font-family: 'Exo', sans-serif;
+    }
+</style>
+  </head>
+  <body>
+    <div id='root'>
+    </div>
+    <div id="osc">
+    </div>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>
