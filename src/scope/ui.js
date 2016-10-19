@@ -1,11 +1,11 @@
 let scopeCanvas = null
 
-function draw(scope) {
+let draw = scope => {
   scope.draw(scopeCanvas.myContext)
   requestAnimationFrame(draw.bind(null, scope))
 }
 
-function setupCanvases() {
+let setupCanvases = () => {
   scopeCanvas = document.getElementById('scope');
   scopeCanvas.width = 512;
   scopeCanvas.height = 256;

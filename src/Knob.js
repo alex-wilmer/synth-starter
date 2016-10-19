@@ -9,14 +9,14 @@ class Knob extends Component {
       this.props.dispatch({
         type: `UPDATE_KNOB`,
         id: this.props.id,
-        value: this.props.value - event.movementY 
+        value: this.props.value - event.movementY
       })
     }
   }
 
   render() {
     return (
-    	<div
+      <div
         ref={node => this.node = node}
         className="outercircle"
         onMouseDown={
@@ -34,17 +34,17 @@ class Knob extends Component {
           }
         }
       >
-    		<div className="innercircle">
-    			<div className="knob">
-    				<div className="knoblabel">{this.props.value}</div>
-    			</div>
-    			<div className="knobrolling" style={{ transform: `rotate(${this.props.value - 180}deg)`}}>
-    				<div className="divider">
+        <div className="innercircle">
+          <div className="knob">
+            <div className="knoblabel">{this.props.value}</div>
+          </div>
+          <div className="knobrolling" style={{ transform: `rotate(${this.props.value - 180}deg)`}}>
+            <div className="divider">
               <div className="pointer" />
             </div>
-    			</div>
-    		</div>
-    	</div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
