@@ -1,44 +1,38 @@
-import createScope from './scope'
+import Oscilloscope from './Oscilloscope'
 
-export default () => {
+let Synth = () => {
 
   /*
    *  Your code here!
    */
 
-/*----------------------------------------------------------------------------*/
-
   let ctx = new AudioContext()
   let o = ctx.createOscillator()
   let mod = ctx.createOscillator()
   let modGain = ctx.createGain()
-  //
+
   mod.type = `saw`
   mod.connect(modGain)
   modGain.connect(o.frequency)
-  //
+
   o.type = `sawtooth`
   o.frequency.value = 200
   o.connect(ctx.destination)
   o.start()
   mod.start()
-  o.connect(createScope(ctx))
+  o.connect(Oscilloscope(ctx))
 
-/*----------------------------------------------------------------------------*/
-
-  return state => {
+  return (UI) => {
 
     /*
      *  Listen to UI changes!
      */
 
-/*----------------------------------------------------------------------------*/
-
-    o.frequency.value = state.knobs.knob1
-    modGain.gain.value = state.knobs.knob2
-    mod.frequency.value = state.knobs.knob3
-
-/*----------------------------------------------------------------------------*/
+    o.frequency.value = UI.knobs.knob1
+    modGain.gain.value = UI.knobs.knob2
+    mod.frequency.value = UI.knobs.knob3
 
   }
 }
+
+export default Synth

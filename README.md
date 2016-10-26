@@ -1,38 +1,60 @@
 Synth Starter :zap::sound::notes:
 =====================
 
-### Prerequisites
+A user interface with all of the fixins of a typical synthesizer--knobs, toggles, sliders, oh my!
 
-NodeJS 4+ Installed (if not installed click here)
+It's your job to write the code that generates the sound and hooks into the UI to shape your synth's output into something beautiful (or chaotic, if that's your thing).
 
+## Programs
 
-### Install & Run
+ - **Required**: [NodeJS](https://nodejs.org/en/download/) >=4.0.0 -  [nvm aka Node Version Manager](https://github.com/creationix/nvm) recommended for osx / linux
+ - **Optional** [yarn](https://yarnpkg.com/en/docs/install) - highly recommended!
+
+## Install / Run
+
+yarn:
 
 ```
-make
+make yarn
+```
+
+npm:
+
+```
+make npm
 ```
 
 Open http://localhost:3000 in your browser.
 
-### Now edit `src/Synth.js`
+## Code
+
+### `src/Synth`
+
+The `Synth` function is called when the page is loaded and it returns a function that will be called whenever the UI is updated.
 
 ```
-import createScope from './scope'
-
 let Synth = () => {
 
-  // Your code here!
+  //  Your synth code
 
   return (UI) => {
 
-    // Listen to UI changes!
+    //  Your reactions to UI updates
 
   }
 }
+
+export default Synth
 ```
 
-# About
+### `src/Oscilloscope` (requires AudioContext)
 
-In this live interactive tutorial, we will explore the basics of audio synthesis through the very convenient, very easy to use Web Audio API. You will be given a pre-builtuser interface with all of the fixins of a typical synthesizer--knobs, toggles, sliders, oh my!--and it will be your job to write the code that generates the sound and hooks into the UI to shape your synth's output into something beautiful (or chaotic, if that's your thing).
+The `Oscilloscope` function returns an analyzer node that will draw the waveform of the nodes that connect to it.
 
-Come and learn just how easy it is to make sweet, sweet music right from your browser!
+```
+import Oscilloscope from './Oscilloscope'
+
+let ctx = new AudioContext()
+...
+node.connect(Oscilloscope(ctx))
+```
