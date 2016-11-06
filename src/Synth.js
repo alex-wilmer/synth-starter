@@ -7,30 +7,55 @@ let Synth = () => {
    */
 
   let ctx = new AudioContext()
-  let o = ctx.createOscillator()
-  let mod = ctx.createOscillator()
-  let modGain = ctx.createGain()
 
-  mod.type = `saw`
-  mod.connect(modGain)
-  modGain.connect(o.frequency)
+  let power, o, mod, modGain, outputGain
 
-  o.type = `sawtooth`
-  o.frequency.value = 200
-  o.connect(ctx.destination)
-  o.start()
-  mod.start()
-  o.connect(Oscilloscope(ctx))
+  let powerUp = () => {
+    power = true
+    o = ctx.createOscillator()
+    mod = ctx.createOscillator()
+    modGain = ctx.createGain()
+    outputGain = ctx.createGain()
 
-  return (UI) => {
+    mod.type = `sawtooth`
+    mod.connect(modGain)
+    modGain.connect(o.frequency)
+
+    o.type = `sawtooth`
+    o.frequency.value = 200
+    o.connect(outputGain)
+
+    outputGain.gain.value = 1
+    outputGain.connect(ctx.destination)
+
+    outputGain.connect(Oscilloscope(ctx))
+
+    o.start()
+    mod.start()
+  }
+
+  let powerDown = () => {
+    power = false
+    o.stop()
+    mod.stop()
+  }
+
+  return (UI)  => {
 
     /*
      *  Listen to UI changes!
      */
 
-    o.frequency.value = UI.knobs.knob1
-    modGain.gain.value = UI.knobs.knob2
-    mod.frequency.value = UI.knobs.knob3
+    if (UI.power && !power) powerUp()
+    else if (!UI.power && power) powerDown()
+
+    if (power) {
+      o.frequency.value = UI.knobs.knob1.value
+      modGain.gain.value = UI.knobs.knob2.value
+      mod.frequency.value = UI.knobs.knob3.value
+
+      outputGain.gain.value = UI.masterVolume
+    }
 
   }
 }
