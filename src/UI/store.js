@@ -36,4 +36,30 @@ export default () => createStore(handleActions({
     },
   }),
 
+  CHANGE_SHAPE: (state, action) => ({
+    ...state,
+    waveShapes: {
+      ...state.waveShapes,
+      [action.id]: action.shape,
+    },
+  }),
+
+  PLAY_KEY: (state, action) => {
+    let sameKey = state.activeKeys.find(x => x === action.key)
+    if (sameKey) return state
+
+    return {
+      ...state,
+      activeKeys: [
+        ...state.activeKeys,
+        action.key,
+      ],
+    }
+  },
+
+  CLEAR_KEYS: (state) => ({
+    ...state,
+    activeKeys: [],
+  }),
+
 }, initState))

@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Row, Column } from './Flex'
 import Knob from './Knob'
 import Slider from './Slider'
+import Keyboard from './Keyboard'
+import WaveShapeButtons from './WaveShapeButtons'
 import setupSynth from '../Synth'
-
-let Row = ({ children, style, className }) =>
-  <div className={className} style={{ display: `flex`, ...style }}>
-    {children}
-  </div>
-
-let Column = ({ children, style, className }) =>
-  <div className={className} style={{ display: `flex`, flexDirection: `column`, ...style }}>
-    {children}
-  </div>
 
 class App extends Component {
   componentDidMount() {
@@ -25,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <Column style={{ justifyContent: `center`, alignItems: `center`, height: `100vh` }}>
-        <Column className="container">
+        <Column className="container" style={{ justifyContent: `center` }}>
           <Row style={{ alignItems: `center`, padding: `20px 40px` }}>
             <span className="title">JSWS-101</span>
             <span style={{ marginLeft: `auto` }}>
@@ -51,12 +44,22 @@ class App extends Component {
               </button>
             </span>
           </Row>
+          <Row style={{ justifyContent: `space-around`, width: `540px`, margin: `0 auto` }}>
+            {Object.keys(this.props.state.waveShapes).map(id =>
+              <WaveShapeButtons
+                key={id}
+                id={id}
+                active={this.props.state.waveShapes[id]}
+              />
+            )}
+          </Row>
           <Row
             className="knobs"
             style={{
               transform: `scale(0.7)`,
-              width: `790px`,
+              width: `700px`,
               justifyContent: `space-between`,
+              marginTop: `-20px`,
             }}
           >
             {Object.keys(this.props.state.knobs).map(id =>
@@ -68,7 +71,8 @@ class App extends Component {
               />
             )}
           </Row>
-          <canvas id="scope" />
+          <canvas style={{ marginTop: `-40px` }} id="scope" />
+          <Keyboard />
         </Column>
       </Column>
     )

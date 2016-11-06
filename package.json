@@ -41,6 +41,7 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "redux-actions": "^0.13.0"
+    "redux-actions": "^0.13.0",
+    "tonal-freq": "^0.51.2"
   }
 }

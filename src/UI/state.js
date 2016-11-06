@@ -1,6 +1,12 @@
 let state = {
   power: false,
   masterVolume: 1,
+  waveShapes: {
+    shape1: `sine`,
+    shape2: `sine`,
+    shape3: `sine`,
+    shape4: `sine`,
+  },
   knobs: {
     knob1: {
       value: 0,
@@ -19,6 +25,8 @@ let state = {
       name: `Knob 4`,
     },
   },
+  activeKeys: [],
+  octave: 2,
 }
 
 /*----------------------------------------------------------------------------*/

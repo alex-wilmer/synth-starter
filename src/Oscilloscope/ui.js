@@ -6,10 +6,10 @@ let draw = scope => {
 }
 
 let setupCanvases = () => {
-  scopeCanvas = document.getElementById('scope');
-  scopeCanvas.width = 512;
-  scopeCanvas.height = 256;
-  scopeCanvas.myContext = scopeCanvas.getContext('2d')
+  scopeCanvas = document.getElementById(`scope`)
+  scopeCanvas.width = 512
+  scopeCanvas.height = 256
+  scopeCanvas.myContext = scopeCanvas.getContext(`2d`)
 }
 
 export default scope => {

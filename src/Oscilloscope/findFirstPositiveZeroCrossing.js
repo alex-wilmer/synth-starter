@@ -6,13 +6,13 @@ export default (buf, buflen) => {
   let t
 
   // advance until we're zero or negative
-  while (i < buflen && (buf[i] > 128 ))
+  while (i < buflen && (buf[i] > 128))
     i++
 
   if (i >= buflen) return 0
 
   // advance until we're above MINVAL, keeping track of last zero.
-  while (i < buflen && ((t = buf[i]) < MINVAL )) {
+  while (i < buflen && ((t = buf[i]) < MINVAL)) {
     if (t >= 128) {
       if (last_zero === -1) last_zero = i
     } else last_zero = -1
@@ -20,7 +20,7 @@ export default (buf, buflen) => {
   }
 
   // we may have jumped over MINVAL in one sample.
-  if (last_zero == -1) last_zero = i
+  if (last_zero === -1) last_zero = i
 
   // We didn't find any positive zero crossings
   if (i === buflen) return 0

@@ -12,7 +12,6 @@ class Oscilloscope {
 
   draw(context) {
     let data = this.data
-    let quarterHeight = this.height / 4
     let scaling = this.height / 256
 
     this.analyser.getByteTimeDomainData(data)

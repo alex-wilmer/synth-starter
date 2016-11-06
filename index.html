@@ -37,6 +37,7 @@
     	box-shadow:inset 1px 1px 2px rgba(255,255,255,0.3),
     				-1px -1px 1px rgba(255,255,255,0.7);
     	z-index:120;
+      transform: scale(0.9);
     }
     div.innercircle{
     	position:absolute;
@@ -84,11 +85,6 @@
     	text-shadow:1px 1px 1px rgba(255,255,255,1),
     				0px 0px 1px rgba(0,0,0,0.2);
     	background:white;
-    	border-radius:100%;
-    	border:1px solid rgba(255,255,255,0.7);
-    	box-shadow:1px 1px 2px rgba(255,255,255,0.4),
-    				inset 1px 1px 1px rgba(0,0,0,0.1),
-    				inset -1px -1px 2px rgba(0,0,0,0.1);
     	z-index:130;
     }
     div.pointer{
@@ -128,14 +124,14 @@
     	border-top-right-radius:100%;
     }
     #scope {
-      height: 303.6px;
+      height: 200px;
       transform: scale(0.75);
       border: 5px solid #f4679f;
       border-radius: 50px;
     }
     .container {
       border: 5px solid #f4679f;
-      border-radius: 50px;
+      border-radius: 50px 50px 0px 15px;
       box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     }
     .title {
@@ -239,6 +235,71 @@
     }
     input[type=range]:focus::-ms-fill-upper {
       background: #f4679f;
+    }
+    .waveshape:hover {
+      cursor: pointer;
+      background-color: #ffede3 !important;
+    }
+
+    .piano {
+      position: relative;
+      height: 100px;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      list-style-type: none;
+      margin-left: 5px;
+    }
+
+    ul li { position: relative; float: left; margin: 0; padding: 0;}
+
+    .black {
+      margin: 0 0 0 -10px;
+      width: 20px;
+      height: 60px;
+      background: #f4679f;
+      z-index: 1000;
+      border-top: 2px solid #f4679f;
+      border-right: 2px solid #f4679f;
+      border-bottom: 2px solid #f4679f;
+    }
+
+    .black:active {
+      border-top: 2px solid #f4679f;
+      border-bottom: 2px solid #f4679f;
+      -webkit-box-shadow: inset 7px 10px 67px rgba(204,204,204,0.2);
+      -moz-box-shadow: inset 7px 10px 67px 8px rgba(204,204,204,0.2);
+      box-shadow: inset 7px 10px 67px 8px rgba(204,204,204,0.2);
+    }
+
+    .white {
+      width: 46px;
+      height: 115px;
+      background: #ffffff;
+      border-top: 2px solid #f4679f;
+      border-right: 2px solid #f4679f;
+      border-bottom: 2px solid #f4679f;
+    }
+
+    .white:active {
+      background-color: rgb(254, 190, 219);
+    }
+
+    .black + .white {
+      margin-left: -10px;
+    }
+
+    ul li {
+      border-radius: 0 0 7px 7px;
+    }
+
+    ul li:first-of-type {
+      border-left: 2px solid #f4679f;
+      border-radius: 10px 0 7px 7px;
+    }
+
+    ul li:last-of-type {
+      border-radius: 0 10px 7px 7px;
     }
 
 </style>

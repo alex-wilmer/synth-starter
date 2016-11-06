@@ -10,19 +10,20 @@ let Synth = () => {
 
   let power, o, mod, modGain, outputGain
 
-  let powerUp = () => {
-    power = true
+  let playNote = (frequency) => {
+    // power = true
     o = ctx.createOscillator()
     mod = ctx.createOscillator()
     modGain = ctx.createGain()
     outputGain = ctx.createGain()
 
     mod.type = `sawtooth`
+    mod.frequency.value = 0
     mod.connect(modGain)
     modGain.connect(o.frequency)
 
     o.type = `sawtooth`
-    o.frequency.value = 200
+    o.frequency.value = frequency
     o.connect(outputGain)
 
     outputGain.gain.value = 1
@@ -34,10 +35,15 @@ let Synth = () => {
     mod.start()
   }
 
-  let powerDown = () => {
-    power = false
-    o.stop()
-    mod.stop()
+  let restNote = () => {
+    scheduleRelease(outputGain)
+  }
+
+  let scheduleRelease = (source) => {
+    let amplitude = source.gain
+    amplitude.cancelScheduledValues(ctx.currentTime)
+    amplitude.setValueAtTime(amplitude.value, ctx.currentTime)
+    amplitude.linearRampToValueAtTime(0, ctx.currentTime + 0.28)
   }
 
   return (UI)  => {
@@ -46,16 +52,21 @@ let Synth = () => {
      *  Listen to UI changes!
      */
 
-    if (UI.power && !power) powerUp()
-    else if (!UI.power && power) powerDown()
-
-    if (power) {
-      o.frequency.value = UI.knobs.knob1.value
-      modGain.gain.value = UI.knobs.knob2.value
-      mod.frequency.value = UI.knobs.knob3.value
-
-      outputGain.gain.value = UI.masterVolume
-    }
+    // if (UI.power && !power) powerUp()
+    // else if (!UI.power && power) powerDown()
+//
+    // if (!power) {
+      if (UI.activeKeys.length) {
+        playNote(UI.activeKeys[0])
+        mod.frequency.value = UI.knobs.knob2.value
+        modGain.gain.value = UI.knobs.knob3.value
+        outputGain.gain.value = UI.masterVolume
+        o.type = UI.waveShapes.shape1
+      }
+      else {
+        restNote()
+      }
+    // }
 
   }
 }
