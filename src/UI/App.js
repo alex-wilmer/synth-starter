@@ -5,6 +5,7 @@ import Knob from './Knob'
 import Slider from './Slider'
 import Keyboard from './Keyboard'
 import WaveShapeButtons from './WaveShapeButtons'
+import FilterTypeButtons from './FilterTypeButtons'
 import Sequencer from './Sequencer'
 import setupSynth from '../Synth'
 
@@ -60,6 +61,11 @@ class App extends Component {
                     active={this.props.state.waveShapes[id]}
                   />
                 )}
+                <FilterTypeButtons
+                  key="filter1"
+                  id="filter1"
+                  active={this.props.state.filterTypes.filter1}
+                />
               </Row>
               <Row
                 className="knobs"

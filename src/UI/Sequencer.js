@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import range from 'lodash.range'
 import { Row, Column } from './Flex'
 
 let toggleSequencer = (playing, synthHandlers) => {
@@ -85,8 +84,8 @@ class Sequencer extends Component {
             {this.props.state.playing ? `STOP`: `PLAY`}
           </button>
         </Column>
-        {range(16).map(x =>
-          <div key={x} className={`led ${this.props.state.step === x ? `active` : ``}`} />
+        {Object.keys(this.props.state.steps).map(id =>
+          <div key={id} className={`led ${this.props.state.step === +id ? `active` : ``}`} />
         )}
       </Row>
     )

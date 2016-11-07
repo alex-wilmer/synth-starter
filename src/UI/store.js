@@ -88,6 +88,14 @@ export default () => createStore(handleActions({
     },
   }),
 
+  CHANGE_FILTER: (state, action) => ({
+    ...state,
+    filterTypes: {
+      ...state.filterTypes,
+      [action.id]: action.filter,
+    },
+  }),
+
   PLAY_KEY: (state, action) => {
     let sameKey = state.activeKeys.find(x => x === action.key)
     if (sameKey) return state

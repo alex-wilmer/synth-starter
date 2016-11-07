@@ -10,8 +10,7 @@ let Synth = () => {
   let masterGain = ctx.createGain()
   let biquadFilter = ctx.createBiquadFilter()
 
-  biquadFilter.type = `bandpass`
-  biquadFilter.gain.value = 25
+  biquadFilter.gain.value = 50
 
   biquadFilter.connect(masterGain)
   masterGain.connect(ctx.destination)
@@ -67,6 +66,7 @@ let Synth = () => {
 
       masterGain.gain.value = UI.masterVolume
       biquadFilter.frequency.value = UI.knobs.knob4.value
+      biquadFilter.type = UI.filterTypes.filter1
     },
 
     onSequencerEvent(UI) {
