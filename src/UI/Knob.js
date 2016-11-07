@@ -49,7 +49,7 @@ class Knob extends Component {
             </div>
           </div>
         </div>
-        <div style={{ marginTop: `16px` }}>
+        <div style={{ marginTop: `16px`, padding: `0 5px` }}>
           {this.state.editing
             ? <input
                 type="text"

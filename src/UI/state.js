@@ -9,6 +9,7 @@ let state = {
     shape2: `sine`,
     shape3: `sine`,
     shape4: `sine`,
+    shape5: `sine`,
   },
   knobs: {
     knob1: {
@@ -26,6 +27,10 @@ let state = {
     knob4: {
       value: 0,
       name: `Knob 4`,
+    },
+    knob5: {
+      value: 0,
+      name: `Knob 5`,
     },
   },
   sliders: {

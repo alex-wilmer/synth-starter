@@ -51,8 +51,8 @@ class App extends Component {
             </span>
           </Row>
           <Row>
-            <Column style={{ marginLeft: `-30px` }}>
-              <Row style={{ justifyContent: `space-around`, width: `440px`, margin: `0 auto` }}>
+            <Column style={{ marginLeft: `-60px` }}>
+              <Row style={{ justifyContent: `space-around`, width: `536px`, marginLeft: `87px` }}>
                 {Object.keys(this.props.state.waveShapes).map(id =>
                   <WaveShapeButtons
                     key={id}
@@ -93,7 +93,7 @@ class App extends Component {
                     width: `175px`,
                     position: `absolute`,
                     top: `80px`,
-                    left: `${(i * 40) - 110}px`,
+                    left: `${(i * 40) - 50}px`,
                   }}
                 />
               )}
