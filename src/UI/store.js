@@ -1,13 +1,29 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import { handleActions } from 'redux-actions'
 import initState from './state'
 import { autoRehydrate } from 'redux-persist'
 
 export default () => createStore(handleActions({
 
+  UPDATE: (state, action) => ({
+    ...state,
+    ...action.payload,
+  }),
+
   TOGGLE_POWER: (state) => ({
     ...state,
     power: !state.power,
+  }),
+
+  TOGGLE_SEQUENCER: (state) => ({
+    ...state,
+    playing: !state.playing,
+  }),
+
+  UPDATE_STEP: (state) => ({
+    ...state,
+    step: (state.step + 1) % 16,
   }),
 
   UPDATE_MASTER_VOLUME: (state, action) => ({
@@ -95,4 +111,4 @@ export default () => createStore(handleActions({
     octave: state.octave - 1,
   }),
 
-}, initState), undefined, autoRehydrate())
+}, initState), applyMiddleware(thunk), autoRehydrate())

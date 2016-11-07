@@ -1,6 +1,8 @@
 let state = {
   power: false,
   masterVolume: 1,
+  playing: false,
+  step: 0,
   waveShapes: {
     shape1: `sine`,
     shape2: `sine`,

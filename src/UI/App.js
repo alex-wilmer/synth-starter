@@ -5,6 +5,7 @@ import Knob from './Knob'
 import Slider from './Slider'
 import Keyboard from './Keyboard'
 import WaveShapeButtons from './WaveShapeButtons'
+import Sequencer from './Sequencer'
 import setupSynth from '../Synth'
 
 class App extends Component {
@@ -93,7 +94,11 @@ class App extends Component {
               )}
             </Row>
           </Row>
+
           <canvas style={{ marginTop: `-40px` }} id="scope" />
+
+          <Sequencer />
+
           <Row>
             <Column
               style={{ justifyContent: `center`, alignItems: `center`, width: `67px` }}

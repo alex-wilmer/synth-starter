@@ -6,7 +6,15 @@ import App from './App'
 import createStore from './store'
 
 let store = createStore()
-persistStore(store)
+persistStore(store, {}, () => {
+  store.dispatch({
+    type: `UPDATE`,
+    payload: {
+      step: 0,
+      playing: false,
+    },
+  })
+})
 
 ReactDOM.render(
   <Provider store={store}>
