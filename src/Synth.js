@@ -8,10 +8,9 @@ let Synth = () => {
 
   let ctx = new AudioContext()
 
-  let power, o, mod, modGain, outputGain
+  let o, mod, modGain, outputGain
 
   let playNote = (frequency) => {
-    // power = true
     o = ctx.createOscillator()
     mod = ctx.createOscillator()
     modGain = ctx.createGain()
@@ -52,21 +51,16 @@ let Synth = () => {
      *  Listen to UI changes!
      */
 
-    // if (UI.power && !power) powerUp()
-    // else if (!UI.power && power) powerDown()
-//
-    // if (!power) {
-      if (UI.activeKeys.length) {
-        playNote(UI.activeKeys[0])
-        mod.frequency.value = UI.knobs.knob2.value
-        modGain.gain.value = UI.knobs.knob3.value
-        outputGain.gain.value = UI.masterVolume
-        o.type = UI.waveShapes.shape1
-      }
-      else {
-        restNote()
-      }
-    // }
+    if (UI.activeKeys.length) {
+      playNote(UI.activeKeys[0])
+      mod.frequency.value = UI.knobs.knob2.value
+      modGain.gain.value = UI.knobs.knob3.value
+      outputGain.gain.value = UI.masterVolume
+      o.type = UI.waveShapes.shape1
+    }
+    else {
+      restNote()
+    }
 
   }
 }

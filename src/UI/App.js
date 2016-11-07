@@ -44,35 +44,98 @@ class App extends Component {
               </button>
             </span>
           </Row>
-          <Row style={{ justifyContent: `space-around`, width: `540px`, margin: `0 auto` }}>
-            {Object.keys(this.props.state.waveShapes).map(id =>
-              <WaveShapeButtons
-                key={id}
-                id={id}
-                active={this.props.state.waveShapes[id]}
-              />
-            )}
-          </Row>
-          <Row
-            className="knobs"
-            style={{
-              transform: `scale(0.7)`,
-              width: `700px`,
-              justifyContent: `space-between`,
-              marginTop: `-20px`,
-            }}
-          >
-            {Object.keys(this.props.state.knobs).map(id =>
-              <Knob
-                key={id}
-                id={id}
-                value={this.props.state.knobs[id].value}
-                name={this.props.state.knobs[id].name}
-              />
-            )}
+          <Row>
+            <Column style={{ marginLeft: `-30px` }}>
+              <Row style={{ justifyContent: `space-around`, width: `440px`, margin: `0 auto` }}>
+                {Object.keys(this.props.state.waveShapes).map(id =>
+                  <WaveShapeButtons
+                    key={id}
+                    id={id}
+                    active={this.props.state.waveShapes[id]}
+                  />
+                )}
+              </Row>
+              <Row
+                className="knobs"
+                style={{
+                  transform: `scale(0.7)`,
+                  width: `625px`,
+                  justifyContent: `space-between`,
+                  marginTop: `-20px`,
+                }}
+              >
+                {Object.keys(this.props.state.knobs).map(id =>
+                  <Knob
+                    key={id}
+                    id={id}
+                    value={this.props.state.knobs[id].value}
+                    name={this.props.state.knobs[id].name}
+                  />
+                )}
+              </Row>
+            </Column>
+            <Row style={{ position: `relative`, width: `100px` }}>
+              {Object.keys(this.props.state.sliders).map((id, i) =>
+                <Slider
+                  key={id}
+                  vertical
+                  min="0"
+                  max="100"
+                  value="0"
+                  style={{
+                    width: `175px`,
+                    position: `absolute`,
+                    top: `80px`,
+                    left: `${(i * 40) - 110}px`,
+                  }}
+                />
+              )}
+            </Row>
           </Row>
           <canvas style={{ marginTop: `-40px` }} id="scope" />
-          <Keyboard />
+          <Row>
+            <Column
+              style={{ justifyContent: `center`, alignItems: `center`, width: `67px` }}
+            >
+              <div style={{ color : `#f4679f`, fontSize: `11px`, fontWeight: `bold` }}>
+                OCT: {this.props.state.octave}
+              </div>
+              <Row style={{ marginTop: `10px` }}>
+                <Row
+                  onClick={() => this.props.dispatch({ type: `DECREMENT_OCTAVE` })}
+                  style={{
+                    cursor: `pointer`,
+                    justifyContent: `center`,
+                    borderTop: `2px solid #f4679f`,
+                    borderLeft: `2px solid #f4679f`,
+                    borderBottom: `2px solid #f4679f`,
+                    borderRight: `1px solid #f4679f`,
+                    color: `#f4679f`,
+                    width: `20px`,
+                  }}
+                >
+                  -
+                </Row>
+                <Row
+                  onClick={() => this.props.dispatch({ type: `INCREMENT_OCTAVE` })}
+                  style={{
+                    cursor: `pointer`,
+                    justifyContent: `center`,
+                    borderTop: `2px solid #f4679f`,
+                    borderLeft: `1px solid #f4679f`,
+                    borderBottom: `2px solid #f4679f`,
+                    borderRight: `2px solid #f4679f`,
+                    color: `#f4679f`,
+                    width: `20px`,
+                    borderLeft: `none`,
+                  }}
+                >
+                  +
+                </Row>
+              </Row>
+            </Column>
+            <Keyboard />
+          </Row>
         </Column>
       </Column>
     )

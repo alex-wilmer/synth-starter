@@ -62,4 +62,14 @@ export default () => createStore(handleActions({
     activeKeys: [],
   }),
 
+  INCREMENT_OCTAVE: (state) => ({
+    ...state,
+    octave: state.octave + 1,
+  }),
+
+  DECREMENT_OCTAVE: (state) => ({
+    ...state,
+    octave: state.octave - 1,
+  }),
+
 }, initState))

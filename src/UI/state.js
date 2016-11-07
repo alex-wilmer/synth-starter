@@ -25,6 +25,24 @@ let state = {
       name: `Knob 4`,
     },
   },
+  sliders: {
+    slider1: {
+      value: 0,
+      name: `Slider 1`,
+    },
+    slider2: {
+      value: 0,
+      name: `Slider 2`,
+    },
+    slider3: {
+      value: 0,
+      name: `Slider 3`,
+    },
+    slider4: {
+      value: 0,
+      name: `Slider 4`,
+    },
+  },
   activeKeys: [],
   octave: 2,
 }
