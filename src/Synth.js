@@ -8,7 +8,12 @@ let Synth = () => {
 
   let ctx = new AudioContext()
   let masterGain = ctx.createGain()
+  let biquadFilter = ctx.createBiquadFilter()
 
+  biquadFilter.type = `bandpass`
+  biquadFilter.gain.value = 25
+
+  biquadFilter.connect(masterGain)
   masterGain.connect(ctx.destination)
   masterGain.connect(Oscilloscope(ctx))
 
@@ -29,7 +34,7 @@ let Synth = () => {
     o.type = UI.waveShapes.shape1
     o.connect(oGain)
 
-    oGain.connect(masterGain)
+    oGain.connect(biquadFilter)
 
     mod.frequency.value = UI.knobs.knob2.value
     modGain.gain.value = UI.knobs.knob3.value
@@ -60,13 +65,8 @@ let Synth = () => {
        *  Listen to UI changes!
        */
 
-      if (UI.activeKeys.length) {
-        playNote({ frequency: UI.activeKeys[0], shape: UI.waveShapes.shape1 })
-      } else {
-        releaseNote(UI.sliders.slider4.value)
-      }
-
       masterGain.gain.value = UI.masterVolume
+      biquadFilter.frequency.value = UI.knobs.knob4.value
     },
 
     onSequencerEvent(UI) {
