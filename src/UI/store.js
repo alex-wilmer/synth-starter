@@ -21,6 +21,11 @@ export default () => createStore(handleActions({
     playing: !state.playing,
   }),
 
+  UPDATE_TEMPO: (state, action) => ({
+    ...state,
+    tempo: Math.max(20, action.value),
+  }),
+
   UPDATE_STEP: (state) => ({
     ...state,
     step: (state.step + 1) % 16,
