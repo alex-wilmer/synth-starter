@@ -1,6 +1,7 @@
 import { createStore } from 'redux'
 import { handleActions } from 'redux-actions'
 import initState from './state'
+import { autoRehydrate } from 'redux-persist'
 
 export default () => createStore(handleActions({
 
@@ -31,6 +32,28 @@ export default () => createStore(handleActions({
       ...state.knobs,
       [action.id]: {
         ...state.knobs[action.id],
+        name: action.name,
+      },
+    },
+  }),
+
+  UPDATE_SLIDER_VALUE: (state, action) => ({
+    ...state,
+    sliders: {
+      ...state.sliders,
+      [action.id]: {
+        ...state.sliders[action.id],
+        value: Math.max(0, action.value),
+      },
+    },
+  }),
+
+  UPDATE_SLIDER_NAME: (state, action) => ({
+    ...state,
+    sliders: {
+      ...state.sliders,
+      [action.id]: {
+        ...state.sliders[action.id],
         name: action.name,
       },
     },
@@ -72,4 +95,4 @@ export default () => createStore(handleActions({
     octave: state.octave - 1,
   }),
 
-}, initState))
+}, initState), undefined, autoRehydrate())

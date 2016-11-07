@@ -25,7 +25,7 @@ class App extends Component {
               <Slider
                 min="0"
                 max="100"
-                value="100"
+                value={this.props.state.masterVolume * 100}
                 style={{ marginRight: `20px` }}
                 action="UPDATE_MASTER_VOLUME"
               />
@@ -78,10 +78,11 @@ class App extends Component {
               {Object.keys(this.props.state.sliders).map((id, i) =>
                 <Slider
                   key={id}
+                  id={id}
                   vertical
                   min="0"
                   max="100"
-                  value="0"
+                  value={this.props.state.sliders[id].value}
                   style={{
                     width: `175px`,
                     position: `absolute`,

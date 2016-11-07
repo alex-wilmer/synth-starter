@@ -6,9 +6,15 @@ let Slider = props =>
     type="range"
     min={props.min}
     max={props.max}
-    defaultValue={props.value}
+    value={props.value}
     style={{...props.style, ...(props.vertical ? { transform: `rotate(270deg)`, height: `30px` } : {}) }}
-    onChange={event => props.dispatch({ type: props.action, value: event.target.value })}
+    onChange={
+      event => props.dispatch({
+        type: props.action || `UPDATE_SLIDER_VALUE`,
+        id: props.id,
+        value: event.target.value,
+      })
+    }
   />
 
 export default connect()(Slider)

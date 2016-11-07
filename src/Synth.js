@@ -7,14 +7,20 @@ let Synth = () => {
    */
 
   let ctx = new AudioContext()
+  let masterGain = ctx.createGain()
 
-  let o, mod, modGain, outputGain
+  masterGain.connect(ctx.destination)
+  masterGain.connect(Oscilloscope(ctx))
+
+  let o, oGain, mod, modGain, lfo
 
   let playNote = (frequency) => {
     o = ctx.createOscillator()
+    oGain = ctx.createGain()
     mod = ctx.createOscillator()
     modGain = ctx.createGain()
-    outputGain = ctx.createGain()
+
+    lfo = ctx.createOscillator()
 
     mod.type = `sawtooth`
     mod.frequency.value = 0
@@ -23,26 +29,19 @@ let Synth = () => {
 
     o.type = `sawtooth`
     o.frequency.value = frequency
-    o.connect(outputGain)
+    o.connect(oGain)
 
-    outputGain.gain.value = 1
-    outputGain.connect(ctx.destination)
-
-    outputGain.connect(Oscilloscope(ctx))
+    oGain.connect(masterGain)
 
     o.start()
     mod.start()
+    lfo.start()
   }
 
-  let restNote = () => {
-    scheduleRelease(outputGain)
-  }
-
-  let scheduleRelease = (source) => {
-    let amplitude = source.gain
-    amplitude.cancelScheduledValues(ctx.currentTime)
-    amplitude.setValueAtTime(amplitude.value, ctx.currentTime)
-    amplitude.linearRampToValueAtTime(0, ctx.currentTime + 0.28)
+  let releaseNote = (time) => {
+    if (oGain) {
+      oGain.gain.linearRampToValueAtTime(0, ctx.currentTime + (time / 80))
+    }
   }
 
   return (UI)  => {
@@ -55,11 +54,13 @@ let Synth = () => {
       playNote(UI.activeKeys[0])
       mod.frequency.value = UI.knobs.knob2.value
       modGain.gain.value = UI.knobs.knob3.value
-      outputGain.gain.value = UI.masterVolume
+      lfo.frequency.value = UI.knobs.knob4.value
       o.type = UI.waveShapes.shape1
-    }
-    else {
-      restNote()
+      mod.type = UI.waveShapes.shape2
+      lfo.type = UI.waveShapes.shape4
+      masterGain.gain.value = UI.masterVolume
+    } else {
+      releaseNote(UI.sliders.slider4.value)
     }
 
   }
