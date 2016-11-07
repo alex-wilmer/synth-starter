@@ -1,6 +1,7 @@
 let state = {
   power: false,
   masterVolume: 1,
+  tempo: 120,
   playing: false,
   step: 0,
   waveShapes: {

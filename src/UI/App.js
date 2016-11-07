@@ -9,11 +9,16 @@ import Sequencer from './Sequencer'
 import setupSynth from '../Synth'
 
 class App extends Component {
+  state = { synthHandlers: {} }
+
   componentDidMount() {
-    let updateSynth = setupSynth()
+    let synthHandlers = setupSynth(this.props.store.getState)
+
     this.props.store.subscribe(() =>
-      updateSynth(this.props.store.getState())
+      synthHandlers.onUIChange(this.props.store.getState())
     )
+
+    this.setState({ synthHandlers })
   }
 
   render() {
@@ -97,7 +102,7 @@ class App extends Component {
 
           <canvas style={{ marginTop: `-40px` }} id="scope" />
 
-          <Sequencer />
+          <Sequencer synthHandlers={this.state.synthHandlers} />
 
           <Row>
             <Column

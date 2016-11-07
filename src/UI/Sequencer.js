@@ -3,15 +3,21 @@ import { connect } from 'react-redux'
 import range from 'lodash.range'
 import { Row } from './Flex'
 
-let id
-
-let toggleSequencer = (playing) => {
-  return (dispatch) => {
+let toggleSequencer = (playing, synthHandlers) => {
+  return (dispatch, getState) => {
     dispatch({ type: `TOGGLE_SEQUENCER` })
 
-    if (!playing) {
-      id = setInterval(() => dispatch({ type: `UPDATE_STEP` }), 1000)
-    } else clearInterval(id)
+    let update = () => {
+      let state = getState()
+
+      if (state.playing) {
+        dispatch({ type: `UPDATE_STEP` })
+        synthHandlers.onSequencerEvent(state)
+        setTimeout(() => requestAnimationFrame(update), 60000 / state.tempo)
+      }
+    }
+
+    if (!playing) update()
   }
 }
 
@@ -32,7 +38,7 @@ let Sequencer = props => {
           borderRadius: `5px`,
           width: `50px`,
         }}
-        onClick={() => props.dispatch(toggleSequencer(props.state.playing))}
+        onClick={() => props.dispatch(toggleSequencer(props.state.playing, props.synthHandlers))}
       >
         {props.state.playing ? `STOP`: `PLAY`}
       </button>

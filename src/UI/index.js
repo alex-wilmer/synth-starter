@@ -6,6 +6,7 @@ import App from './App'
 import createStore from './store'
 
 let store = createStore()
+
 persistStore(store, {}, () => {
   store.dispatch({
     type: `UPDATE`,
