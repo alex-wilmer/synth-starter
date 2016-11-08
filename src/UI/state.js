@@ -15,7 +15,7 @@ let state = {
     7: true,
     8: true,
     9: true,
-    10: true,
+    10: false,
     11: true,
     12: true,
     13: true,
@@ -71,7 +71,7 @@ let state = {
       name: `Slider 4`,
     },
   },
-  activeKeys: [],
+  activeKey: null,
   octave: 2,
 }
 

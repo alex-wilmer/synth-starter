@@ -45,6 +45,7 @@
     "redux-actions": "^0.13.0",
     "redux-persist": "^4.0.0-alpha7",
     "redux-thunk": "^2.1.0",
+    "tonal": "^0.50.3",
     "tonal-freq": "^0.51.2"
   }
 }

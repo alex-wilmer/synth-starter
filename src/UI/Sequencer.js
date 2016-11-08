@@ -85,7 +85,16 @@ class Sequencer extends Component {
           </button>
         </Column>
         {Object.keys(this.props.state.steps).map(id =>
-          <div key={id} className={`led ${this.props.state.step === +id ? `active` : ``}`} />
+          <div
+            key={id}
+            className={`led ${this.props.state.step === +id ? `active` : ``}`}
+            style={
+              !this.props.state.steps[id]
+              ? { backgroundColor: `#ffc8d8`, boxShadow: `none` }
+              : {}
+            }
+            onClick={() => this.props.dispatch({ type: `TOGGLE_STEP`, id })}
+          />
         )}
       </Row>
     )

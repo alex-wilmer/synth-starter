@@ -21,6 +21,14 @@ export default () => createStore(handleActions({
     playing: !state.playing,
   }),
 
+  TOGGLE_STEP: (state, action) => ({
+    ...state,
+    steps: {
+      ...state.steps,
+      [action.id]: !state.steps[action.id],
+    },
+  }),
+
   UPDATE_TEMPO: (state, action) => ({
     ...state,
     tempo: Math.max(20, action.value),
@@ -97,21 +105,15 @@ export default () => createStore(handleActions({
   }),
 
   PLAY_KEY: (state, action) => {
-    let sameKey = state.activeKeys.find(x => x === action.key)
-    if (sameKey) return state
-
     return {
       ...state,
-      activeKeys: [
-        ...state.activeKeys,
-        action.key,
-      ],
+      activeKey: action.key,
     }
   },
 
   CLEAR_KEYS: (state) => ({
     ...state,
-    activeKeys: [],
+    activeKey: null,
   }),
 
   INCREMENT_OCTAVE: (state) => ({

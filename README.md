@@ -1,6 +1,8 @@
 Synth Starter :zap::sound::notes:
 =====================
 
+![JSWS-101](https://raw.githubusercontent.com/alex-wilmer/synth-starter/master/static/img/synth.png "JSWS-101")
+
 A user interface with all of the fixins of a typical synthesizer--knobs, toggles, sliders, oh my!
 
 It's your job to write the code that generates the sound and hooks into the UI to shape your synth's output into something beautiful (or chaotic, if that's your thing).
@@ -26,20 +28,36 @@ make npm
 
 Open http://localhost:3000 in your browser.
 
+Already installed? Just run:
+
+```
+npm start
+```
+
 ## Code
 
 ### `src/Synth`
 
-The `Synth` function is called when the page is loaded and it returns a function that will be called whenever the UI is updated.
+The `Synth` function is called when the page is loaded and it returns an object with two listener functions that will be called whenever the UI is updated, or the next sequencer step fires.
 
 ```
 let Synth = () => {
 
   //  Your synth code
 
-  return (UI) => {
+  return {
 
-    //  Your reactions to UI updates
+    onUIChange(UI) {
+
+      // Listen to UI changes!
+
+    },
+
+    onSequencerEvent(UI) {
+
+      // Listen to sequencer steps!
+
+    },
 
   }
 }
