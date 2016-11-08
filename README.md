@@ -12,6 +12,12 @@ It's your job to write the code that generates the sound and hooks into the UI t
  - **Required**: [NodeJS](https://nodejs.org/en/download/) >=4.0.0 -  [nvm aka Node Version Manager](https://github.com/creationix/nvm) recommended for osx / linux
  - **Optional** [yarn](https://yarnpkg.com/en/docs/install) - highly recommended!
 
+## Checkout a blank slate!
+
+```
+git checkout blank
+```
+
 ## Install / Run
 
 yarn:
