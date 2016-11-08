@@ -82,3 +82,15 @@ let ctx = new AudioContext()
 ...
 node.connect(Oscilloscope(ctx))
 ```
+
+## Tonal Helpers
+
+danigb's `tonal` library is included and is very helpful for converting pitches to frequencies among other things. Check out the repository for more details
+
+https://github.com/danigb/tonal
+
+```
+import { toFreq } from 'tonal'
+
+toFreq(`C3`) // 130.8127826502993
+```
