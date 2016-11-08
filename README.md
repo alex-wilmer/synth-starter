@@ -7,6 +7,15 @@ A user interface with all of the fixins of a typical synthesizer--knobs, toggles
 
 It's your job to write the code that generates the sound and hooks into the UI to shape your synth's output into something beautiful (or chaotic, if that's your thing).
 
+## MDN Resources
+
+ - [Web Audio Api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+ - [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext)
+ - [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode)
+ - [GainNode](https://developer.mozilla.org/en-US/docs/Web/API/GainNode)
+ - [AudioParam](https://developer.mozilla.org/en-US/docs/Web/API/AudioParam)
+ - [BiquadFilterNode](https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode)
+
 ## Programs
 
  - **Required**: [NodeJS](https://nodejs.org/en/download/) >=4.0.0 -  [nvm aka Node Version Manager](https://github.com/creationix/nvm) recommended for osx / linux

@@ -10,6 +10,20 @@ let harmony = [
   `Eb4`, `Eb4`, `Bb4`, `Eb4`, `A4`, `G4`,
 ]
 
+/* It's a me... mario! */
+
+// let melody = [
+//   `D2`, `D2`, null, `D2`, null, `D2`, `D2`, null,
+//   `G2`, null, null, null, `G1`, null, null, null,
+// ]
+//
+// let harmony = [
+//   `E4`, `E4`, null, `E4`, null, `C4`, `E4`, null,
+//   `G4`, null, null, null, `G3`, null, null, null,
+// ]
+
+/*---------------------*/
+
 let Synth = () => {
 
   /*
@@ -50,8 +64,8 @@ let Synth = () => {
     modGain.connect(o.frequency)
     modGain.connect(o2.frequency)
 
-    o.frequency.value = toFreq(melody[UI.step % melody.length])
-    o2.frequency.value = toFreq(harmony[UI.step % harmony.length])
+    o.frequency.value = melody[UI.step % melody.length] ? toFreq(melody[UI.step % melody.length]) : 0
+    o2.frequency.value = harmony[UI.step % melody.length] ? toFreq(harmony[UI.step % harmony.length]) : 0
 
     o.type = UI.waveShapes.shape1
     o2.type = UI.waveShapes.shape2
